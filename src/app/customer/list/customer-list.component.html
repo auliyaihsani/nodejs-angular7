@@ -1,0 +1,45 @@
+<div class="container">
+
+  <h3 class="text-center">Data Customer NodeJs</h3>
+  <hr>
+
+  <table class="table table-striped">
+    <thead class="bg-primary">
+      <tr class="text-center">
+        <th scope="col">id</th>
+        <th scope="col">username</th>
+        <th scope="col">password</th>
+        <th scope="col">firsname</th>
+        <th scope="col">lastname</th>
+        <th scope="col">birthdate</th>
+        <th scope="col">phonetype</th>
+        <th scope="col">phonenumber</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cust of listCustomer | paginate: { itemsPerPage: 5, currentPage: p }" class="text-center">
+        <td><a (click)="selectCustomer(cust)"><u> {{cust.id}}</u></a></td>
+        <td>{{ cust.username}}</td>
+        <td>{{ cust.password}}</td>
+        <td>{{ cust.firsname }}</td>
+        <td> {{ cust.lastname }} </td>
+        <td> {{ cust.birthdate}} </td>
+        <td> {{ cust.phonetype}} </td>
+        <td> {{ cust.phonenumber }} </td>
+        <td> <button class="btn btn-outline-danger" (click)="deleteData(cust.id)">delete</button>
+            &nbsp; <button (click)="selectCustomer(cust)" #formCustomer class="btn btn-outline-primary" >update</button>
+            &nbsp; <button class="btn btn-outline-success">view</button></td>
+      </tr>
+    </tbody>
+  </table><br><br>
+
+  <div class="text-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </div>
+</div>
+<!-- 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
+
+<app-customer-form *ngIf="showDetail" [customer]="selectedCustomer" (result)="prosesResult($event)"></app-customer-form>

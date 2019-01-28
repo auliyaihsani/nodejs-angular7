@@ -1,0 +1,32 @@
+<p>
+  form works!
+</p>
+
+<p>
+  add works!
+</p>
+<div class="container">
+  <h3 class="text-center">Update Data Account NodeJS</h3>
+  <hr>
+  <form [formGroup]="accountFormGroups">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="">opendate</label>
+        <input type="date" class="form-control" formControlName="opendate" placeholder="opendate">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="">balance</label>
+        <input type="text" class="form-control" formControlName="balance" placeholder="balance">
+      </div>
+
+      <select class="form-control " formControlName="customer">
+        <option *ngFor="let cust of listCustomer" [ngValue]="cust.id">
+          {{cust.firsname}}
+
+        </option>
+      </select>
+    </div><br>
+
+    <button type="submit" class="btn btn-primary" (click)="submitAccount()">submit</button>
+  </form>
+</div>
